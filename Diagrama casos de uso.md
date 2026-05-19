@@ -1,33 +1,37 @@
 ```mermaid
 flowchart LR
 
-Operador((Operador))
-Supervisor((Supervisor))
-Gestor((Gestor Industrial))
-IA((Sistema IA))
+    Operador([Operador])
+    Supervisor([Supervisor])
+    Gestor([Gestor Industrial])
+    IA([Serviço de IA])
 
-UC1[Realizar Login]
-UC2[Monitorar Operador]
-UC3[Validar Uso de EPI]
-UC4[Gerar Alerta]
-UC5[Registrar Ocorrência]
-UC6[Consultar Relatórios]
-UC7[Gerar Dashboard]
-UC8[Gerenciar Áreas de Risco]
+    subgraph SafeMeta
 
-Operador --> UC1
-Supervisor --> UC1
-Gestor --> UC1
+        Login((Realizar Login))
+        Monitorar((Monitorar Operador))
+        Validar((Validar Uso de EPI))
+        Alerta((Gerar Alerta))
+        Ocorrencia((Registrar Ocorrência))
+        Areas((Gerenciar Áreas de Risco))
+        Relatorios((Consultar Relatórios))
+        Alerta((Gerar Alerta))
 
-Supervisor --> UC2
-IA --> UC3
-IA --> UC4
-Supervisor --> UC5
-Gestor --> UC6
-Gestor --> UC7
-Supervisor --> UC8
+        Monitorar -. include .-> Validar
+        Validar -. extend .-> Alerta
+        Alerta -.   include .-> Ocorrencia
 
-UC2 --> UC3
-UC3 --> UC4
-UC4 --> UC5
-```
+    end
+
+    Operador --> Login
+
+    Supervisor --> Login
+    Supervisor --> Monitorar
+    Supervisor --> Areas
+
+    Gestor --> Relatorios
+    Gestor --> Alerta
+    Gestor --> Areas
+
+    IA --> Validar
+    IA --> Alerta
