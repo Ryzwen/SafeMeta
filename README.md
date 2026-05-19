@@ -110,6 +110,10 @@ PostgreSQL
 
 Garante persistência confiável dos registros operacionais e relatórios históricos.
 
+React
+
+Permite criar sites rápidos e organizados usando blocos de código reutilizáveis.
+
 MQTT
 
 Ideal para comunicação com sensores industriais e dispositivos IoT devido ao baixo consumo de banda.
